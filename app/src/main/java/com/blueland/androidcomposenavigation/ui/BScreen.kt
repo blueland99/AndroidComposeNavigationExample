@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.blueland.androidcomposenavigation.model.UserModel
 import com.blueland.androidcomposenavigation.navigation.Route
 
 @Composable
@@ -40,7 +41,10 @@ fun BScreen(
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { navController.navigate(Route.CScreen.route) }
+                onClick = {
+                    val userModel = UserModel(nickname = "blueland", phoneNumber = "010-1234-5678")
+                    navController.navigate(Route.CScreen.createRoute(userModel))
+                }
             ) {
                 Text(text = "Go to C Screen")
             }

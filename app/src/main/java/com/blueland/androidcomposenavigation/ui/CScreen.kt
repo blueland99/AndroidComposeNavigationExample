@@ -13,9 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.blueland.androidcomposenavigation.model.UserModel
 import com.blueland.androidcomposenavigation.navigation.Route
+
 @Composable
-fun CScreen(navController: NavHostController) {
+fun CScreen(
+    navController: NavHostController,
+    userModel: UserModel?
+) {
     Scaffold { paddingValues ->
         Column(
             modifier = Modifier
@@ -26,6 +31,12 @@ fun CScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(text = "C Screen")
+
+            // 전달받은 값들 표시
+            userModel?.let {
+                Text(text = "nickname: ${it.nickname}")
+                Text(text = "phoneNumber: ${it.phoneNumber}")
+            }
 
             Button(
                 modifier = Modifier.fillMaxWidth(),

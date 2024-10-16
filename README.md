@@ -11,6 +11,8 @@
 
 ```
 com.example.app
+├── model                   // 데이터 모델 정의
+│   └── UserModel.kt        // @Serializable 어노테이션이 적용된 데이터 클래스
 ├── navigation              // 네비게이션 로직 및 경로 정의
 │   ├── AppNavGraph.kt      // NavHost와 네비게이션 그래프 설정, NavigationArgs 포함
 │   └── Route.kt            // 각 화면의 경로(Route)를 정의하는 sealed class

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -66,4 +67,5 @@ dependencies {
 
     // Jetpack Compose Navigation 라이브러리
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }

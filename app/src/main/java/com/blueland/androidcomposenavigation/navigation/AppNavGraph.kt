@@ -6,9 +6,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.blueland.androidcomposenavigation.model.UserModel
 import com.blueland.androidcomposenavigation.ui.AScreen
 import com.blueland.androidcomposenavigation.ui.BScreen
 import com.blueland.androidcomposenavigation.ui.CScreen
+import kotlinx.serialization.json.Json
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {
@@ -36,8 +38,17 @@ fun AppNavGraph(navController: NavHostController) {
                 boolParam = boolParam ?: false
             )
         }
-        composable(route = Route.CScreen.route) {
-            CScreen(navController = navController)
+        composable(
+            route = Route.CScreen.route,
+            arguments = listOf(
+                navArgument(NavigationArgs.USER_MODEL_PARAM) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val userModelJson = backStackEntry.arguments?.getString(NavigationArgs.USER_MODEL_PARAM)
+            val userModel = userModelJson?.let { Json.decodeFromString<UserModel>(it) } // JSON 문자열을 UserModel로 역직렬화
+            CScreen(navController = navController, userModel = userModel)
         }
     }
 }
